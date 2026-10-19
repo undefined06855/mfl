@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <ranges>
 
+
 namespace mfl
 {
     settings matrix_settings(const settings s)
@@ -37,7 +38,7 @@ namespace mfl
         auto col_widths = std::vector(num_cols, dist_t{0});
         for (const auto& row : cell_box_rows)
         {
-            for (const auto& [index, cell_box] : std::views::enumerate(row))
+            for (const auto& [index, cell_box] : asp::iter::enumerate(row))
             {
                 const auto i = static_cast<std::size_t>(index);
                 col_widths[i] = std::max(col_widths[i], cell_box.dims.width);
@@ -45,11 +46,11 @@ namespace mfl
         }
 
         auto row_hlists = std::vector<hlist>(num_rows);
-        for (auto&& [row_index, row] : std::views::enumerate(cell_box_rows))
+        for (auto&& [row_index, row] : asp::iter::enumerate(cell_box_rows))
         {
             const auto i = static_cast<std::size_t>(row_index);
             auto& row_hlist = row_hlists[i];
-            for (auto&& [col_index, cell_box] : std::views::enumerate(row))
+            for (auto&& [col_index, cell_box] : asp::iter::enumerate(row))
             {
                 const auto j = static_cast<std::size_t>(col_index);
                 row_hlist.nodes.emplace_back(rebox(col_widths[j], std::move(cell_box)));

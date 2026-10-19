@@ -21,6 +21,8 @@ mfl_set_project_warnings(
 
 include(cmake/StaticAnalyzers.cmake)
 
+include(cmake/CPM.cmake)
+CPMAddPackage("gh:undefined06855/asp2#858716b")
 
 add_subdirectory(src)
 add_subdirectory(tests/fonts_for_tests)
@@ -33,7 +35,7 @@ endif ()
 
 include(GNUInstallDirs)
 
-install(TARGETS mfl mfl_options mfl_warnings EXPORT mfl-export LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(TARGETS mfl mfl_options mfl_warnings asp GeodeResult fmt nontype_functional EXPORT mfl-export LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(EXPORT mfl-export DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/mfl NAMESPACE mfl:: FILE mfl-config.cmake)
 
 if (CMAKE_BUILD_TYPE STREQUAL Release)

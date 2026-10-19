@@ -58,5 +58,6 @@ target_link_libraries(mfl
         PUBLIC
         mfl_options
         mfl_warnings
+        asp
         ${CMAKE_THREAD_LIBS_INIT}
 )
