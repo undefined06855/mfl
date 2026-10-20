@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include <ranges>
-#include <asp/iter/std.hpp>
+#include <asp/iter.hpp>
 
 namespace mfl
 {
@@ -22,9 +22,7 @@ namespace mfl
 
     dist_t hlist_width(const hlist& l)
     {
-        return std::ranges::fold_left_first(
-                   l.nodes | std::views::transform([](const node_variant& n) { return width(n); }), std::plus{})
-            .value_or(dist_t{});
+        return asp::iter::enumerate(l.nodes).fold(dist_t{}, [](const node_variant& n) { return width(n); });
     }
 
     dist_t hlist_depth(const hlist& l)

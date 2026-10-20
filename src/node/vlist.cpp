@@ -1,14 +1,11 @@
 #include "node/vlist.hpp"
 
-#include <algorithm>
-#include <ranges>
+#include <asp/iter.hpp>
 
 namespace mfl
 {
     dist_t vlist_size(const vlist& l)
     {
-        return std::ranges::fold_left_first(
-                   l.nodes | std::views::transform([](const node_variant& n) { return vsize(n); }), std::plus{})
-            .value_or(dist_t{});
+        return asp::iter::enumerate(l.nodes).fold(dist_t{}, [](const node_variant& n) { return vsize(n); });
     }
 }
