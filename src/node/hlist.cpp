@@ -22,7 +22,7 @@ namespace mfl
 
     dist_t hlist_width(const hlist& l)
     {
-        return asp::iter::from(l.nodes).fold(dist_t{}, [](const node_variant& n) { return width(n); });
+        return asp::iter::from(l.nodes).fold(dist_t{}, [](dist_t& accumulator, const node_variant& n) { accumulator += width(n); });
     }
 
     dist_t hlist_depth(const hlist& l)
