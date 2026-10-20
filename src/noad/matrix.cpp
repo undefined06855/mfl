@@ -38,7 +38,7 @@ namespace mfl
         auto col_widths = std::vector(num_cols, dist_t{0});
         for (const auto& row : cell_box_rows)
         {
-            for (const auto [index, cell_box] : asp::iter::from(row).enumerate())
+            for (auto [index, cell_box] : asp::iter::from(row).enumerate())
             {
                 const auto i = static_cast<std::size_t>(index);
                 col_widths[i] = std::max(col_widths[i], cell_box.dims.width);
