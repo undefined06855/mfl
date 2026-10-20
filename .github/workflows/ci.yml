@@ -41,9 +41,8 @@ jobs:
             compiler: msvc
             CMAKE_GENERATOR: "Visual Studio 17 2022"
 
-          # todo: enable when appleclang supports C++23
-          #- os: macos-15
-          #  compiler: appleclang
+          - os: macos-15
+           compiler: appleclang
 
         exclude:
           - os: windows-2022
